@@ -42,7 +42,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="blog,Wendiven,CS" />
+  <meta name="keywords" content=",," />
 
 
 
@@ -58,12 +58,23 @@
 
 
 
+<meta name="description" content="昨天看redis实现时，发现搜索用到了跳表。以前上数据结构课的时候就学到过跳表，但是当时没有细讲。这两天看了跳表的原理并且用python进行了实现。感觉跳表这种数据结构既优雅又暴力。
+教程：数据映射–跳表(skiplist)上面的blog里的代码有点问题
+《Skip Lists : A Probabilistic Alternative to balance tree》具体看论文。二叉搜索树在元素">
+<meta name="keywords">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Wendiven's Notes">
-<meta property="og:url" content="https://wendiven.github.io/tags/data-structure/index.html">
+<meta property="og:title" content="跳表(skip list)">
+<meta property="og:url" content="https://wendiven.github.io/hid/跳表-skip-list.html">
 <meta property="og:site_name" content="Wendiven's Notes">
+<meta property="og:description" content="昨天看redis实现时，发现搜索用到了跳表。以前上数据结构课的时候就学到过跳表，但是当时没有细讲。这两天看了跳表的原理并且用python进行了实现。感觉跳表这种数据结构既优雅又暴力。
+教程：数据映射–跳表(skiplist)上面的blog里的代码有点问题
+《Skip Lists : A Probabilistic Alternative to balance tree》具体看论文。二叉搜索树在元素">
+<meta property="og:updated_time" content="2017-04-02T03:28:58.479Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wendiven's Notes">
+<meta name="twitter:title" content="跳表(skip list)">
+<meta name="twitter:description" content="昨天看redis实现时，发现搜索用到了跳表。以前上数据结构课的时候就学到过跳表，但是当时没有细讲。这两天看了跳表的原理并且用python进行了实现。感觉跳表这种数据结构既优雅又暴力。
+教程：数据映射–跳表(skiplist)上面的blog里的代码有点问题
+《Skip Lists : A Probabilistic Alternative to balance tree》具体看论文。二叉搜索树在元素">
 
 
 
@@ -91,13 +102,19 @@
 
 
 
-  <link rel="canonical" href="https://wendiven.github.io/tags/data-structure/"/>
+  <link rel="canonical" href="https://wendiven.github.io/hid/跳表-skip-list.html"/>
 
 
 
 
 
-  <title> 标签: data structure | Wendiven's Notes </title>
+  <title>
+  
+
+  
+    跳表(skip list) | Wendiven's Notes
+  
+</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -252,46 +269,30 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        data structure
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+  <header class="post-header">
+
+	<h2 class="post-title" itemprop="name headline">跳表(skip list)</h2>
+
+
+
+</header>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/20170106/跳表-skip-list/" itemprop="url">
-              
-                <span itemprop="name">跳表(skip list)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-01-06T14:08:05+08:00"
-              content="2017-01-06" >
-          01-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+    
+      <p>昨天看redis实现时，发现搜索用到了跳表。以前上数据结构课的时候就学到过跳表，但是当时没有细讲。这两天看了跳表的原理并且用python进行了实现。<br>感觉跳表这种数据结构既优雅又暴力。</p>
+<p>教程：<a href="http://blog.csdn.net/sunmenggmail/article/details/12648465" target="_blank" rel="external">数据映射–跳表(skiplist)</a><br>上面的blog里的代码有点问题</p>
+<p><strong>《Skip Lists : A Probabilistic Alternative to balance tree》</strong><br>具体看论文。<br>二叉搜索树在元素以随机顺序插入时有很好的效果，但是当元素以特定顺序插入时（敌手策略），其性能会急剧下降。对此，如果能随机打乱输入序列的话，二叉搜索树就能对任何输入序列有较好的性能，但是在实际应用中，输入的序列是及时产生的，也就是说不能实现随机的重排序，所以上述方法不能用了。<br>所以就产生了平衡二叉树（如：AVL树、红黑树），通过实时调整二叉树的结构来保证搜索效率。<br>而跳表（skip list）也是一种可选的代替方案。跳表不需要实时调整结构仍能保证搜索效率，因为它引入了随机数和概率。通过随机数生成器，保证虽然最坏情况依然很坏，但是没有特定的输入序列会达到这个最坏情况（类似quicksort中随机选取pivot element）。用论文里的说法就是：Skip lists have balance properties similar to that of search trees built by random insertions, yet do not require insertions to be random.</p>
+<p>论文里还对比了一下平衡树（AVL trees，self-adjusting trees（这个没听说过。。。））<br>三者在性能上有相同的bound。对它们的取舍主要有以下因素：实现难度、constant factors、type of bound(amortized, probabilistic or worst-case)、performance on a non-uniform distribution of queries.</p>
+<p><strong>1.实现难度上很显然skip list更简单</strong><br><strong>2.constant factors</strong><br>constant factors对算法的实际应用非常重要，特别是对sub-linear算法而言。<br>比如，A和B都是O(logn)的算法，B比A快一倍，那么A处理大小为n的输入时，B可以处理n^2的输入。（之前从来没想过orz）</p>
+<ul>
+<li>a)算法本身内在的复杂度会限定对它的任何实现的lower bound。self-adjusting trees在搜索过程中会持续重排，加大了在实现中消耗。而skip list相较而言内在的复杂度比较低。  </li>
+<li>b）如果算法太过复杂，那么对算法实现的优化也较难进行。</li>
+</ul>
+<p><strong>3.type of bound</strong><br><strong>4.performance on a non-uniform distribution of queries</strong><br>在高度倾斜的输入分布下，self-adjusting trees性能比skip list好。<br>但在这种条件下有更好的选择：《Slow optimally balanced search strategies vs. cached fast uniformly balanced search strategies》</p>
 
     
   </div>
-
-  
 
 
           </div>
@@ -299,6 +300,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="hid/跳表-skip-list.html"
+           data-title="跳表(skip list)" data-url="https://wendiven.github.io/hid/跳表-skip-list.html">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -332,7 +341,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -341,7 +350,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -350,7 +359,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -58,12 +58,43 @@
 
 
 
+<meta name="description" content="摘自《算法导论》第15章
+动态规划通常用来求解最优化问题（optimization problem）
+通常按如下4个步骤设计一个动态规划算法：
+刻画一个最优的结构特征
+递归地定义最优解的值
+计算最优解的值，通常采用自底向上的方法
+利用计算出的信息构造一个最优解
+
+动态规划有两种等价的实现方法
+带备忘的自顶向下法（top-down with memoization）此方法仍按自然的递归形式编写过程，">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Wendiven's Notes">
-<meta property="og:url" content="https://wendiven.github.io/categories/data-structure/search/index.html">
+<meta property="og:title" content="动态规划">
+<meta property="og:url" content="https://wendiven.github.io/hid/动态规划.html">
 <meta property="og:site_name" content="Wendiven's Notes">
+<meta property="og:description" content="摘自《算法导论》第15章
+动态规划通常用来求解最优化问题（optimization problem）
+通常按如下4个步骤设计一个动态规划算法：
+刻画一个最优的结构特征
+递归地定义最优解的值
+计算最优解的值，通常采用自底向上的方法
+利用计算出的信息构造一个最优解
+
+动态规划有两种等价的实现方法
+带备忘的自顶向下法（top-down with memoization）此方法仍按自然的递归形式编写过程，">
+<meta property="og:updated_time" content="2017-04-02T03:28:58.435Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wendiven's Notes">
+<meta name="twitter:title" content="动态规划">
+<meta name="twitter:description" content="摘自《算法导论》第15章
+动态规划通常用来求解最优化问题（optimization problem）
+通常按如下4个步骤设计一个动态规划算法：
+刻画一个最优的结构特征
+递归地定义最优解的值
+计算最优解的值，通常采用自底向上的方法
+利用计算出的信息构造一个最优解
+
+动态规划有两种等价的实现方法
+带备忘的自顶向下法（top-down with memoization）此方法仍按自然的递归形式编写过程，">
 
 
 
@@ -91,13 +122,19 @@
 
 
 
-  <link rel="canonical" href="https://wendiven.github.io/categories/data-structure/search/"/>
+  <link rel="canonical" href="https://wendiven.github.io/hid/动态规划.html"/>
 
 
 
 
 
-  <title> 分类: search | Wendiven's Notes </title>
+  <title>
+  
+
+  
+    动态规划 | Wendiven's Notes
+  
+</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -252,47 +289,45 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        search
-        <small>分类</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+  <header class="post-header">
+
+	<h2 class="post-title" itemprop="name headline">动态规划</h2>
+
+
+
+</header>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/20170106/跳表-skip-list/" itemprop="url">
-              
-                <span itemprop="name">跳表(skip list)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-01-06T14:08:05+08:00"
-              content="2017-01-06" >
-          01-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+    
+      <p>摘自《算法导论》第15章</p>
+<p><strong>动态规划</strong>通常用来求解<strong>最优化问题</strong>（optimization problem）</p>
+<h4 id="通常按如下4个步骤设计一个动态规划算法："><a href="#通常按如下4个步骤设计一个动态规划算法：" class="headerlink" title="通常按如下4个步骤设计一个动态规划算法："></a>通常按如下4个步骤设计一个动态规划算法：</h4><ol>
+<li>刻画一个最优的结构特征</li>
+<li>递归地定义最优解的值</li>
+<li>计算最优解的值，通常采用自底向上的方法</li>
+<li>利用计算出的信息构造一个最优解</li>
+</ol>
+<h4 id="动态规划有两种等价的实现方法"><a href="#动态规划有两种等价的实现方法" class="headerlink" title="动态规划有两种等价的实现方法"></a>动态规划有两种等价的实现方法</h4><ol>
+<li><p>带备忘的自顶向下法（top-down with memoization）<br>此方法仍按自然的递归形式编写过程，但过程会保存每个子问题的解。当需要一个子问题的解时，过程首先检查是否已经保存过此解。</p>
+</li>
+<li><p>自底向上法（bottom-up method）<br>这种方法一般需要恰当定义子问题“规模”的概念，使得任何子问题的求解都只依赖与更小的“子问题”的求解。因而我们可以按照子问题的规模排序，按有小到大的顺序进行求解。</p>
+</li>
+</ol>
+<p>两种方法得到的算法具有相同的渐近运行时间，仅有的差别是在某些特殊情况下，自顶向下的方法并未真正递归地考察所有可能的子问题。由于没有频繁的递归函数调用的开销，自底向上方法的时间复杂性函数通常具有更小的系数。</p>
+<p>通常情况下，如果每个子问题都必须至少求解一次，自底向上动态规划算法会比自顶向下备忘算法快，因为自底向上算法没有递归调用的开销，表的维护开销也更小。而且，队友某些问题，我们可以通过表的访问模式，进一步降低时空代价。相反，如果子问题空间中的某些子问题完全不必求解，备忘方法就会体现出优势，因为它只会求解那些绝对必要的子问题。</p>
+<h4 id="适合应用动态规划求解的最优化问题应该具备两个要素：最优子结构和子问题重叠"><a href="#适合应用动态规划求解的最优化问题应该具备两个要素：最优子结构和子问题重叠" class="headerlink" title="适合应用动态规划求解的最优化问题应该具备两个要素：最优子结构和子问题重叠"></a>适合应用动态规划求解的最优化问题应该具备两个要素：<strong>最优子结构</strong>和<strong>子问题重叠</strong></h4><p><strong>最优子结构</strong><br>如果一个问题的最优解包含其子问题的最优解，我们就称此问题具有<em>最优子结构性质</em>。<br>一个刻画子问题空间的好经验是：保持子问题空间尽可能简单，只在必要时才扩展它。</p>
+<p>对于不同问题领域，最优子结构的不同体现在两个方面：</p>
+<ol>
+<li>原问题的最优解中设计多少个子问题</li>
+<li>在确定最优解使用哪些子问题时，我们需要考察多少种选择<br>我们可以用子问题的总数和每个子问题需要考察多少种选择这两个因素的乘积来粗略分析动态规划算法的运行时间。</li>
+</ol>
+<p>在尝试使用动态规划方法时要小心，要注意问题是否具有最优子结构性质。<br>例如，求图中的<strong>无权最短路径</strong>和<strong>无权最长路径</strong>。前者具有最优子结构而后者没有。因为两个最长简单路径子问题时相关的，而两个最短路径子问题时无关的。<br>即需要，<strong>同一个原问题的一个子问题的解不影响另一个子问题的解</strong>。</p>
+<p><strong>重叠子问题</strong><br>子问题空间必须足够“小”，集问题的递归算法会反复地求解相同的子问题。与之相对的，适合用分治方法求解的问题通常在递归的每一步都生成全新的子问题。</p>
+<p><strong>重构最优解</strong><br>从实际考虑，我们通常将每个子问题所做的选择存在一个表中，这样就不必根据代价值来重构这些信息。</p>
 
     
-  </section>
-
-  
-
+  </div>
 
 
           </div>
@@ -300,6 +335,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="hid/动态规划.html"
+           data-title="动态规划" data-url="https://wendiven.github.io/hid/动态规划.html">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -333,7 +376,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -342,7 +385,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -351,7 +394,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
